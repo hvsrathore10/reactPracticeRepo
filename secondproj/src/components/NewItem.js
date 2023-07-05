@@ -6,7 +6,7 @@ export default class NewItem extends Component {
         return (
             <div>
                 <div className="card">
-                    <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{zIndex: 1,right:'90%'}}>{source} </span> 
+                    <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{zIndex: 1,right:'90%'}}>{source} </span> 
                     <img src={!imageUrl ? "https://finbold.com/app/uploads/2023/06/Bitcoin-price-hits-1-year-high-Heres-a-buy-zone-if-correction-occurs.jpg" : imageUrl} className="card-img-top" alt="imageUrl fail" />
                     <div className="card-body">
                         <h5 className="card-title">{title}</h5>
