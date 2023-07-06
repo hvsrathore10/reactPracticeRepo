@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NewItem from './NewItem'
 import Spanner from './Spanner'
 import PropTypes from 'prop-types'
-import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 
 export default class News extends Component {
@@ -30,6 +30,7 @@ export default class News extends Component {
         document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewsMonkey`;
     }
     async updateNews(){
+        this.props.setProgress(10);
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=90cf722a77bc4037ae35592de647c4a8&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         let data = await fetch(url);
         let parsedData = await data.json();
@@ -38,21 +39,12 @@ export default class News extends Component {
             articles: parsedData.articles, 
             totalResults: parsedData.totalResults
         });
+        this.props.setProgress(100);
     }
     async componentDidMount(){
         this.updateNews();
     }
-    // function used by Button's
-    /*handlePrevClick = async ()=>{
-        this.setState({ page: this.state.page - 1},()=>{
-            this.updateNews();
-        });
-    }
-    handleNextClick = async ()=>{
-        this.setState({ page: this.state.page + 1},()=>{
-            this.updateNews();
-        });
-    }*/
+    
     fetchMoreData = async () => {
         this.setState({page: this.state.page + 1}, async ()=>{
             const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=90cf722a77bc4037ae35592de647c4a8&page=${this.state.page}&pageSize=${this.props.pageSize}`;
@@ -71,11 +63,10 @@ export default class News extends Component {
         return (
             <>
                 <h1 className="text-center" style={{margin: '40px 0px'}}>NewsMonkey - Top {this.capitalizeFirstLetter(this.props.category)} Headline</h1>
-                {/* {this.state.loading && <Spanner />} */}
                 <InfiniteScroll
                     dataLength={this.state.articles.length}
                     next={this.fetchMoreData}
-                    hasMore={this.state.articles.length !== this.state.articles.totalResults}
+                    hasMore={this.state.articles.length !== this.state.totalResults}
                     loader={<Spanner />} >  
 
                     <div className="container my-3">
@@ -95,11 +86,6 @@ export default class News extends Component {
                             })}
                         </div>
                     </div>
-                {/* Button --- previour and next */}
-                {/* <div className="container d-flex justify-content-between">
-                        <button type="button" disabled={this.state.page<=1} className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previour</button>
-                        <button type="button" disabled={this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)} className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
-                </div> */}
                 </InfiniteScroll>
             </>
         )
