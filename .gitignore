@@ -1,3 +1,9 @@
 *node_modules
+
+# misc
 .DS_Store
+.env.local
+.ene.development.local
+.evn.test.local
+.evn.production.local
 
