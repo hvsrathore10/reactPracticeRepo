@@ -1,0 +1,18 @@
+import React from 'react'
+import Logoimg from './logo.png'
+
+export default function Navbar() {
+    return (
+        <nav className="navbar bg-light">
+            <div className="container-fluid">
+                <a className="navbar-brand">
+                    <img src={Logoimg} className="d-inline-block align-text-center mx-1" style={{borderRadius: '4px', width: '50px', height: '40px'}} />
+                    SkyReport</a>
+                <form className="d-flex" role="search">
+                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    )
+}
