@@ -11,14 +11,13 @@ export default function News(props) {
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [totalResults, setTotalResults] = useState(0)
-    // document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`;
 
 
-    const capitalizeFirstLetter = (string)=> {
+    const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    const updateNews = async ()=> {
+    const updateNews = async () => {
         props.setProgress(10);
         const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`;
         let data = await fetch(url);
@@ -30,11 +29,17 @@ export default function News(props) {
         props.setProgress(100);
     }
 
-    useEffect(()=> {
+    useEffect(() => {
+        document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`;
         updateNews();
+        // eslint-disable-next-line
     }, []);
 
-    const fetchMoreData = async ()=> {
+    const fetchMoreData = async () => {
+        if (articles.length >= totalResults) {
+            return; // No more data to fetch
+        }
+
         setPage(page + 1);
         const nextPage = page + 1;
         const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${nextPage}&pageSize=${props.pageSize}`;
@@ -43,15 +48,17 @@ export default function News(props) {
         console.log(parsedData);
         setArticles(articles.concat(parsedData.articles))
         setTotalResults(parsedData.totalResults)
+
+        setLoading(false);
     };
     return (
         <>
-            <h1 className="text-center" style={{ margin: '40px 0px' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headline</h1>
+            <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headline</h1>
             <InfiniteScroll
                 dataLength={articles.length}
                 next={fetchMoreData}
                 hasMore={articles.length !== totalResults}
-                loader={<Spanner />} >
+                loader={!loading && <Spanner />} >
 
                 <div className="container my-3">
                     <div className="row my-3">
