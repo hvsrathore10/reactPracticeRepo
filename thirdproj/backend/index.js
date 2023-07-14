@@ -12,5 +12,5 @@ app.use('/api/auth',require('./routes/auth'))  //auth.js - Create New User and L
 app.use('/api/notes',require('./routes/notes')) //notes.js - All notes access of loggedin used
 
 app.listen(port, () => {
-  console.log(`iNotebook listening on port http://localhost:${port}`)
+  console.log(`iNotebook Backend listening on port http://localhost:${port}`)
 })
