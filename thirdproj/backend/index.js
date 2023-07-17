@@ -1,8 +1,10 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors')
 const connectToMongo = require('./db');
 
 connectToMongo(); //function imported from db.js to connect with database
 const app = express()
+app.use(cors())
 const port = 2500
 
 app.use(express.json());

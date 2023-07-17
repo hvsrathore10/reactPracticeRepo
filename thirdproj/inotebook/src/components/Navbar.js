@@ -1,14 +1,10 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 function Navbar() {
   let location = useLocation();
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
   return (
-    <nav className="navbar navbar-expand-lg sticky-top bg-dark navbar-dark" style={{height:'75px', fontSize: 'large'}}>
+    <nav className="navbar navbar-expand-lg sticky-top bg-dark navbar-dark">
       <div className="container-fluid">
         <Link className="navbar-brand mb-0 h1" to="/">iNotebook</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

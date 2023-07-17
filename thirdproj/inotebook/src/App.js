@@ -26,7 +26,7 @@ function App() {
   }
   return (
     <>
-      {/* using context api */}
+      {/* NoteState is applied for using context api */}
       <NoteState>
         {/* Adding router */}
         <BrowserRouter>
