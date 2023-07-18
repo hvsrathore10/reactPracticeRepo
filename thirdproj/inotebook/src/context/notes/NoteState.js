@@ -32,9 +32,10 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }), // body data type must match "Content-Type" header
     });
-    // const json = response.json(); // parses JSON response into native JavaScript objects
-
+    const json = await response.json(); // parses JSON response into native JavaScript objects
+    
     console.log("Adding a New Note");
+    console.log(json);
     const note = {
       "_id": "64b174ed991bd3e233d7bd5360",
       "user": "64af11fb02ac79f8503c92cb",
@@ -58,9 +59,9 @@ const NoteState = (props) => {
       }
     });
     const json = await response.json(); // parses JSON response into native JavaScript objects
-    console.log(json);
-
+    
     console.log("Delete note with id : " + id);
+    console.log(json);
     const newNotes = notes.filter((note) => { return note._id !== id });
     setNotes(newNotes);
   }
@@ -75,8 +76,8 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }), // body data type must match "Content-Type" header
     });
-    // const json = response.json(); // parses JSON response into native JavaScript objects
-
+    const json = await response.json(); // parses JSON response into native JavaScript objects
+    console.log(json);
     //Logic to edit client:
     for (let index = 0; index < notes.length; index++) {
       const element = notes[index];
