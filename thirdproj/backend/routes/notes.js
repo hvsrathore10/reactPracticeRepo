@@ -80,7 +80,7 @@ router.delete('/deletenote/:id', fetchuser, async (req,res)=>{
 
     note = await Notes.findByIdAndDelete(req.params.id);
     res.json({"Success" : "Note as been deleted"});
-    res.json({note})
+    // res.json({note})
 })
 
 
