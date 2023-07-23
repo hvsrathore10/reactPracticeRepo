@@ -29,8 +29,9 @@ function Login(props) {
         setCredentials({...credentials, [e.target.name]: e.target.value})
     }
     return (
-        <div className='container'>
-            <form onSubmit={handleSubmit}>
+        <div className='container mt-5'>
+            <h1 className='text-center' style={{fontFamily: 'Copperplate, Papyrus, fantasy'}}>iNotebook Login</h1>
+            <form onSubmit={handleSubmit} className='container w-50'>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input type="email" className="form-control" id="email" value={credentials.email} onChange={onChange} name='email' aria-describedby="emailHelp" />
@@ -40,7 +41,7 @@ function Login(props) {
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" className="form-control" id="password" value={credentials.password} onChange={onChange} name='password'/>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Login</button>
             </form>
         </div>
     )

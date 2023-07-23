@@ -30,8 +30,9 @@ function Signup(props) {
     }
 
     return (
-        <div className='container'>
-            <form onSubmit={handleSubmit}>
+        <div className='container mt-5'>
+            <h1 className='text-center' style={{fontFamily: 'Copperplate, Papyrus, fantasy'}}>iNotebook Create Account</h1>
+            <form onSubmit={handleSubmit} className='container w-50'>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">User Name</label>
                     <input type="text" className="form-control" id="name" value={credentials.name} onChange={onChange} name='name' required />
@@ -49,7 +50,7 @@ function Signup(props) {
                     <label htmlFor="cpassword" className="form-label">Conform Password</label>
                     <input type="password" className="form-control" id="cpassword" value={credentials.cpassword} onChange={onChange} name='cpassword' required minLength={5}/>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Signup</button>
             </form>
         </div>
     )
