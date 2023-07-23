@@ -16,6 +16,9 @@ router.post('/createuser' , [
     body('email','custom msg').isEmail(),
     body('password','custom msg').isLength({min: 5})
 ] , async (req,res)=>{
+
+    let success = false;
+
     //If there are errors, return Bed Reqiust and the errors
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -44,9 +47,8 @@ router.post('/createuser' , [
         }
 
         const authToken = jwt.sign(data, JWT_SECRET);
-
-        // res.json(user);
-        res.json({authToken: authToken});
+        success = true;
+        res.json({success: success,authToken: authToken});
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Error occured");
@@ -58,6 +60,9 @@ router.post('/login' , [
     body('email','custom msg').isEmail(),
     body('password').exists()
 ] , async (req,res)=>{
+
+    let success = false;
+    
     //If there are errors, return Bed Reqiust and the errors
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -83,7 +88,8 @@ router.post('/login' , [
         }
 
         const authToken = jwt.sign(data, JWT_SECRET);
-        res.json({authToken: authToken});
+        success = true;
+        res.json({success: success,authToken: authToken});
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Error occured");
