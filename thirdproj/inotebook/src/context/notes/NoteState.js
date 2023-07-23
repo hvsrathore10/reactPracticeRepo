@@ -14,7 +14,7 @@ const NoteState = (props) => {
       method: "GET", // *like : GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhZjExZmIwMmFjNzlmODUwM2M5MmNiIn0sImlhdCI6MTY4OTIyMjE3Nn0.TdEoR5Ty07V2ANhz53oI5U9g8S9dI0EgjMLqd5ZDCbQ"
+        "auth-token": localStorage.getItem('token')
       }
     });
     const json = await response.json(); // parses JSON response into native JavaScript objects
@@ -28,7 +28,7 @@ const NoteState = (props) => {
       method: "POST", // *like : GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhZjExZmIwMmFjNzlmODUwM2M5MmNiIn0sImlhdCI6MTY4OTIyMjE3Nn0.TdEoR5Ty07V2ANhz53oI5U9g8S9dI0EgjMLqd5ZDCbQ"
+        "auth-token": localStorage.getItem('token')
       },
       body: JSON.stringify({ title, description, tag }), // body data type must match "Content-Type" header
     });
@@ -43,7 +43,7 @@ const NoteState = (props) => {
       method: "DELETE", // *like : GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhZjExZmIwMmFjNzlmODUwM2M5MmNiIn0sImlhdCI6MTY4OTIyMjE3Nn0.TdEoR5Ty07V2ANhz53oI5U9g8S9dI0EgjMLqd5ZDCbQ"
+        "auth-token": localStorage.getItem('token')
       }
     });
     const json = await response.json(); // parses JSON response into native JavaScript objects
@@ -61,7 +61,7 @@ const NoteState = (props) => {
       method: "PUT", // *like : GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRhZjExZmIwMmFjNzlmODUwM2M5MmNiIn0sImlhdCI6MTY4OTIyMjE3Nn0.TdEoR5Ty07V2ANhz53oI5U9g8S9dI0EgjMLqd5ZDCbQ"
+        "auth-token": localStorage.getItem('token')
       },
       body: JSON.stringify({ title, description, tag }), // body data type must match "Content-Type" header
     });
